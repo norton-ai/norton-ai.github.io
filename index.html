@@ -270,6 +270,172 @@
   <!-- End news section -->
 
 
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title">💪 Motivation</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Tensor decomposition has emerged as an effective tool for compressing convolutional
+          neural networks by exploiting the low-rank structure of weight tensors. Existing
+          approaches typically focus on <em>which</em> decomposition to use and <em>how</em> to
+          select the rank, while implicitly assuming that the convolutional weights should be
+          decomposed at the level of the entire layer.
+        </p>
+
+        <p>
+          However, a convolutional layer weight is inherently a <em>4-order tensor</em>, and the
+          way this tensor is handled prior to decomposition has a major impact on both
+          compression efficiency and approximation quality. Prior works either decompose the
+          whole layer directly, or reshape the tensor into a lower-order form before applying
+          decomposition. These strategies operate at a coarse granularity and may either limit
+          flexibility or compromise the original multidimensional structure.
+        </p>
+      </div>
+
+      <div class="has-text-centered">
+        <figure>
+          <img src="./static/images/NORTON-teaser.png" alt="Comparison of decomposition strategies"
+            style="width: 60%; height: auto;">
+          <figcaption>
+            <b>Figure 1:</b> Different ways of decomposing convolutional weights:
+            layer-wise decomposition, reshaped-based decomposition, and the proposed
+            filter-wise decomposition.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="content has-text-justified">
+        <p>
+          In contrast, we observe that convolution operates on a <em>filter-by-filter</em> basis:
+          each output feature map is produced independently by convolving the input with a
+          single filter. This motivates a more fine-grained perspective, where the 4-order
+          weight tensor is naturally interpreted as a collection of 3-order filter tensors.
+        </p>
+
+        <p>
+          Building on this observation, <strong>NORTON</strong> adopts a
+          <em>filters decomposition</em> strategy, in which each filter is decomposed
+          individually. This preserves the full multidimensional structure, avoids unnecessary
+          tensor reshaping, and yields a narrower and more stable range of ranks. Moreover,
+          filters decomposition replaces a convolutional layer with fewer sublayers than
+          layer-wise decomposition, reducing architectural complexity and facilitating
+          subsequent compression steps.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title">🚀 Why Combining Decomposition and Pruning?</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Among existing model compression paradigms, <em>tensor decomposition</em> and
+          <em>structured pruning</em> have proven to be both effective and practical.
+          Decomposition reduces redundancy by exploiting low-rank structure in weights,
+          while pruning removes redundant filters or channels directly. Importantly, both
+          approaches produce standard architectures that can be deployed on resource-constrained
+          devices without specialized hardware.
+        </p>
+
+        <p>
+          Despite their shared goal, these two techniques have largely been studied in isolation.
+          Only limited efforts have explored how to combine them in a truly complementary manner.
+          This separation overlooks a key property of convolutional networks: their weights
+          simultaneously exhibit <em>low-rank</em> and <em>sparse</em> characteristics.
+        </p>
+      </div>
+
+      <div class="has-text-centered">
+        <figure>
+          <img src="./static/images/NORTON-teaser-result.png" alt="Complementarity of decomposition and pruning"
+            style="width: 60%; height: auto;">
+          <figcaption>
+            <b>Figure 2:</b> Decomposition and pruning are complementary:
+            combining them enables significantly higher compression than either method alone.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="content has-text-justified">
+        <p>
+          Decomposition methods alone cannot eliminate all redundant filters, while aggressive
+          pruning often leads to severe accuracy degradation when low-rank structure is ignored.
+          As a result, state-of-the-art methods based on either paradigm typically saturate
+          well below extreme compression regimes.
+        </p>
+
+        <p>
+          <strong>NORTON</strong> is motivated by the idea that these two strategies should be
+          integrated rather than stacked mechanically. By operating on a shared representation—
+          the factor matrices produced by filter-wise decomposition—NORTON enables decomposition
+          and pruning to reinforce each other. This principled integration allows NORTON to
+          achieve ultra-high compression rates, pushing network compression far beyond what
+          either approach can reach independently.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title">🎯 Approach</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          <strong>NORTON</strong> is a unified network compression framework that tightly integrates
+          <em>filter-wise tensor decomposition</em> and <em>structured filter pruning</em> in a sequential
+          and mutually reinforcing manner. The key insight is that convolutional filters exhibit both
+          low-rank and redundant structures, which can be exploited more effectively when these two
+          paradigms are combined through a shared representation.
+        </p>
+
+        <p>
+          As illustrated in Figure&nbsp;3, NORTON follows a two-phase pipeline applied simultaneously
+          to all convolutional layers:
+        </p>
+
+        <ol>
+          <li>
+            <strong>Filters decomposition:</strong> Each convolutional filter is independently
+            decomposed using Canonical Polyadic Decomposition (CPD), preserving the original
+            multidimensional structure while yielding compact <strong>CPDBlocks</strong> composed of
+            factor matrices.
+          </li>
+          <li>
+            <strong>CPDBlock pruning:</strong> Redundant filters are identified and removed directly
+            in the decomposed space using a distance metric based on
+            <em>Principal Angles Between Subspaces (PABS)</em>, which robustly handles scaling and
+            permutation ambiguities of CPD.
+          </li>
+        </ol>
+
+        <p>
+          By sharing the same factor matrices for both decomposition and pruning, NORTON achieves
+          extreme compression rates while maintaining accuracy. A single fine-tuning stage is then
+          sufficient to recover performance, resulting in highly compact models suitable for
+          deployment on resource-constrained devices.
+        </p>
+      </div>
+
+      <div class="has-text-centered">
+        <figure>
+          <img src="./static/images/NORTON-framework.png" alt="NORTON framework diagram"
+            style="width: 60%; height: auto;">
+          <figcaption>
+            <b>Figure 3:</b> NORTON framework — filter-wise CP decomposition followed by CPDBlock
+            pruning in the decomposed space.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
   <section class="section" id="downstream">
     <div class="container is-max-desktop">
       <h2 class="title">🚀 Throughput acceleration</h2>
