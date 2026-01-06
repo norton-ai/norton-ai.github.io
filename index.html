@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Project page of NORTON">
+  <meta property="og:title" content="Enhanced Network Compression Through Tensor Decompositions and Pruning" />
+  <meta property="og:description"
+    content="Project page of the paper Enhanced Network Compression Through Tensor Decompositions and Pruning" />
+  <meta property="og:url" content="https://github.com/norton-ai/norton-ai.github.io" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/images/banner.png" />
+  <meta property="og:image:width" content="128" />
+  <meta property="og:image:height" content="120" />
+
+
+  <meta name="twitter:title" content="Project page of NORTON">
+  <meta name="twitter:description"
+    content="Project page of the IEEE Transactions on Neural Networks and Learning Systems paper Enhanced Network Compression Through Tensor Decompositions and Pruning">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/banner.png">
+  <meta name="twitter:card" content="static/images/overview.png">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="NORTON">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Enhanced Network Compression Through Tensor Decompositions and Pruning</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/styles.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <!-- MathJax configuration -->
+  <script>
+    window.MathJax = {
+      tex: {
+        macros: {
+          // your LaTeX macros go here
+          tens: ["{\\boldsymbol{\\mathcal{#1}}}", 1],
+          matr: ["{\\mathbf{#1}}", 1],
+          vec: ["{\\mathbf{#1}}", 1],
+          tr: "\\mathrm{tr}", // example for trace operator
+          rank: "\\mathrm{rank}", // example for rank
+          // add more as needed
+        }
+      }
+    };
+  </script>
+
+  <!-- MathJax loader -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+  <!-- Add CSS for background -->
+  <style>
+    body {
+      background-size: cover;
+      /* Adjust the size of the background image */
+      background-position: center;
+      /* Center the background image */
+      background-repeat: no-repeat;
+      /* Prevent background image from repeating */
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // Array of colors resembling book paper
+    var bookPaperColors = [
+      '#f5f5dc', // Light Beige
+      '#fffff0', // Ivory
+      '#fdf5e6', // Old Lace
+      '#ffefd5', // Papaya Whip
+      '#faebd7'  // Linen
+    ];
+
+    // Function to get a random color from the array
+    function getRandomBookPaperColor() {
+      var randomIndex = Math.floor(Math.random() * bookPaperColors.length);
+      return bookPaperColors[randomIndex];
+    }
+
+    // Function to set random background color
+    function setRandomBackgroundColor() {
+      document.body.style.backgroundColor = getRandomBookPaperColor();
+    }
+
+    // Call the function to set the background color when the page loads
+    window.onload = setRandomBackgroundColor;
+  </script>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Enhanced Network Compression Through Tensor Decompositions and
+              Pruning
+            </h1>
+
+            <!-- Journal name below title -->
+            <h2 class="subtitle is-4" style="margin-top: 0.5rem; font-style: italic; color: #444;">
+              <a href="https://ieeexplore.ieee.org/document/10463116" target="_blank"
+                style="color: inherit; text-decoration: none;">
+                IEEE Transactions on Neural Networks and Learning Systems
+              </a>
+            </h2>
+
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://vantienpham.github.io/" target="_blank">Van Tien Pham</a>,</span>
+              <span class="author-block">
+                <a href="https://yzniyed.blogspot.com/p/about-me.html" target="_blank">Yassine Zniyed</a>,</span>
+              <span class="author-block">
+                <a href="https://webusers.i3s.unice.fr/~tpnguyen/" target="_blank">Thanh Phuong Nguyen</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://www.univ-tln.fr/" target="_blank" style="font-style: italic; color: black;">Université
+                  de Toulon</a>,
+                <a href="https://www.univ-amu.fr/" target="_blank" style="font-style: italic; color: black;">Aix
+                  Marseille Université</a>,
+                <a href="https://www.cnrs.fr/fr" target="_blank" style="font-style: italic; color: black;">CNRS</a>,
+                <a href="https://www.lis-lab.fr/" target="_blank" style="font-style: italic; color: black;">LIS, UMR
+                  7020, France</a>
+              </span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Github link -->
+                <span class="link-block">
+                  <a href="https://github.com/vantienpham/NORTON" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- Hugging Face link -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/norton-ai/models" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span>🤗 Models</span>
+                  </a>
+                </span>
+
+                <!-- Arxiv PDF link -->
+                <span class="link-block">
+                  <a href="https://hal.science/hal-04475167" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- IEEE Publication link -->
+                <span class="link-block">
+                  <a href="https://ieeexplore.ieee.org/document/10463116" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-book"></i>
+                    </span>
+                    <span>Publication</span>
+                  </a>
+                </span>
+
+                <!-- Days since submission badge -->
+                <span class="link-block">
+                  <span id="days-since-submission" class="button is-normal is-rounded"
+                    style="background: transparent; border: 1px solid transparent; box-shadow: none; color: inherit;">
+                    <span class="icon">
+                      <i class="fas fa-calendar-alt"></i>
+                    </span>
+                    <span id="days-count"></span>
+                  </span>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- JavaScript to calculate days since submission -->
+  <script>
+    // Set the submission date
+    const submissionDate = new Date('2023-07-26');
+
+    // Calculate the difference in days
+    function updateDaysSinceSubmission() {
+      const currentDate = new Date();
+      const timeDiff = currentDate - submissionDate;
+      const daysSinceSubmission = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      document.getElementById('days-count').textContent = daysSinceSubmission + ' days since submission';
+    }
+
+    // Update the days on page load
+    document.addEventListener('DOMContentLoaded', updateDaysSinceSubmission);
+  </script>
+
+
+  <!-- Paper abstract -->
+  <section class="section" style="background: transparent;">
+    <div class="container is-max-desktop content">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Network compression techniques that combine tensor decompositions and pruning have shown promise in
+              leveraging the advantages of both strategies. In this work, we propose enhanced Network cOmpRession
+              through TensOr decompositions and pruNing (NORTON), a novel method for network compression. NORTON
+              introduces the concept of filter decomposition, enabling a more detailed decomposition of the network
+              while preserving the weight’s multidimensional properties. Our method incorporates a novel structured
+              pruning approach, effectively integrating the decomposed model. Through extensive experiments on various
+              architectures, benchmark datasets, and representative vision tasks, we demonstrate the usefulness of our
+              method. NORTON achieves superior results compared to state-of-the-art techniques in terms of complexity
+              and accuracy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+
+  <!-- News section -->
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3">🔥 News</h2>
+      <ul>
+        <li><strong>2024.02.23:</strong> 🎉 Accepted! Our paper made it into <a
+            href="https://ieeexplore.ieee.org/document/10463116">IEEE Transactions on Neural Networks and Learning
+            Systems</a> after 241 days since submission!</li>
+      </ul>
+    </div>
+  </section>
+  <!-- End news section -->
+
+
+  <section class="section" id="downstream">
+    <div class="container is-max-desktop">
+      <h2 class="title">🚀 Throughput acceleration</h2>
+      <div class="content has-text-justified">
+        <p>
+          To evaluate NORTON's effectiveness in downstream tasks, we used our compressed ResNet-50/Imagenet as the
+          backbone for training Faster/Mask/Keypoint-RCNN on COCO. Our method shows promising results in terms of
+          precision and recall, along with achieving relatively higher compression levels compared to other approaches.
+          Remarkably, NORTON significantly enhances inference throughput, resulting in over a \(2 \times\) improvement
+          in frames per second (FPS) compared to the baseline models. For instance, Faster-RCNN exhibits a reduction in
+          end-to-end latency from 100 ms to 42 ms, achieving a real-time framerate of 25 FPS. It is worth emphasizing
+          that these performance evaluations were conducted on a GTX 3060 GPU, providing robust evidence of the
+          real-world applicability of our approach. These results highlight NORTON's potential as a valuable tool for
+          enhancing neural network efficiency and effectiveness in demanding tasks such as real-world object detection,
+          instance segmentation, and keypoint detection.
+        </p>
+      </div>
+      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <tbody>
+          <tr>
+            <td><img src="static/videos/faster-baseline.gif" alt=""></td>
+            <td><img src="static/videos/faster-compressed.gif" alt=""></td>
+          </tr>
+          <tr>
+            <td><img src="static/videos/mask-baseline.gif" alt=""></td>
+            <td><img src="static/videos/mask-compressed.gif" alt=""></td>
+          </tr>
+          <tr>
+            <td><img src="static/videos/keypoint-baseline.gif" alt=""></td>
+            <td><img src="static/videos/keypoint-compressed.gif" alt=""></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="has-text-centered">
+        <p><b>Figure 2:</b> Baseline (<em>left</em>) vs Compressed (<em>right</em>) model inference.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="gradcam">
+    <div class="container is-max-desktop">
+      <h2 class="title">🌈 Visualizing feature preservation</h2>
+      <div class="content has-text-justified">
+        <p>
+          We present a qualitative evaluation of feature preservation, complementing the established efficiency
+          demonstrated through numerical results. Our analysis involves a random selection of 5 images from the ImageNet
+          validation dataset, examining three
+          compression levels applied to the original ResNet-50 model: 44%, 63%, and 79%.
+          Utilizing GradCAM for interpretation, we visually assess and analyze feature maps in both the original and
+          compressed models.
+          The visual representation underscores our framework's efficacy in retaining crucial features across a diverse
+          range of classes.
+          Noteworthy is its consistent robustness in capturing and preserving essential information at different CRs.
+          This resilience implies sustained effectiveness and reliability across varying scenarios and compression
+          levels, positioning our framework as a versatile choice for network compression across diverse applications
+          and datasets.
+        </p>
+      </div>
+      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th class="has-text-centered">Input</th>
+            <th class="has-text-centered">CR=0%</th>
+            <th class="has-text-centered">CR=50%</th>
+            <th class="has-text-centered">CR=64%</th>
+            <th class="has-text-centered">CR=78%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="static/images/cam/ILSVRC2012_val_00003682.JPEG" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00003682_ori.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00003682_norton_50.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00003682_norton_64.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00003682_norton_78.jpg" alt=""></td>
+          </tr>
+          <tr>
+            <td><img src="static/images/cam/ILSVRC2012_val_00010983.JPEG" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00010983_ori.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00010983_norton_50.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00010983_norton_64.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00010983_norton_78.jpg" alt=""></td>
+          </tr>
+          <tr>
+            <td><img src="static/images/cam/ILSVRC2012_val_00035947.JPEG" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00035947_ori.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00035947_norton_50.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00035947_norton_64.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00035947_norton_78.jpg" alt=""></td>
+          </tr>
+          <tr>
+            <td><img src="static/images/cam/ILSVRC2012_val_00045226.JPEG" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00045226_ori.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00045226_norton_50.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00045226_norton_64.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00045226_norton_78.jpg" alt=""></td>
+          </tr>
+          <tr>
+            <td><img src="static/images/cam/ILSVRC2012_val_00046629.JPEG" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00046629_ori.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00046629_norton_50.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00046629_norton_64.jpg" alt=""></td>
+            <td><img src="static/images/cam/ILSVRC2012_val_00046629_norton_78.jpg" alt=""></td>
+          </tr>
+          <!-- Add other rows similarly -->
+        </tbody>
+      </table>
+      <div class="has-text-centered">
+        <p><b>Figure 3:</b> Qualitative assessment of feature preservation in compressed models.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">🔖 Citation</h2>
+      <p>If the code and paper help your research, please kindly cite:</p>
+      <pre style="background: transparent; border: none; box-shadow: none;">
+        <code id="citation">
+          @article{pham2025enhanced,
+            title={Enhanced Network Compression Through Tensor Decompositions and Pruning},
+            author={Pham, Van Tien and Zniyed, Yassine and Nguyen, Thanh Phuong},
+            journal={IEEE Transactions on Neural Networks and Learning Systems}, 
+            year={2025},
+            volume={36},
+            number={3},
+            pages={4358-4370},
+            doi={10.1109/TNNLS.2024.3370294}
+          }
+        </code>
+      </pre>
+      <button onclick="copyCitation()">Copy</button>
+    </div>
+  </section>
+
+  <script>
+    function copyCitation() {
+      const codeElement = document.getElementById('citation');
+      const range = document.createRange();
+      range.selectNode(codeElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+    }
+  </script>
+  <!--End BibTex citation -->
+
+
+  <!--Acknowledgements-->
+  <section class="section" id="acknowledgements">
+    <div class="container is-max-desktop content">
+      <h2 class="title">👍 Acknowledgements</h2>
+      <p>
+        This work was granted access to the high-performance computing resources of <a
+          href="http://www.idris.fr/eng/info/missions-eng.html">IDRIS</a> under the allocation 2023-103147 made by <a
+          href="https://genci.fr/">GENCI</a>. Specifically, our experiments were conducted on <a
+          href="http: //www.idris.fr/eng/jean-zay/jean-zay-presentation-eng.html">the Jean Zay supercomputer</a>,
+        located at IDRIS, the national computing center for <a href="https://www.cnrs.fr/fr">the National Centre for
+          Scientific Research (CNRS)</a>.
+      </p>
+      <figure>
+        <img src="./static/images/JeanZay.jpg" alt="jean-zay" style="width: 100%; height: auto;">
+      </figure>
+      <p>
+        We thank <a href="https://anr.fr/fr/">the Agence Nationale de la Recherche (ANR)</a> for partially supporting
+        our work through the ANR ASTRID ROV-Chasseur project (<a
+          href="https://anr.fr/Projet-ANR-21-ASRO-0003">ANR-21-ASRO-0003</a>).
+      </p>
+      <figure>
+        <img src="./static/images/anr.png" alt="ANR Logo" style="width: 100%; height: auto;">
+      </figure>
+    </div>
+  </section>
+  <!--End Acknowledgements-->
+
+
+  <!-- Statcounter tracking code -->
+  <script type='text/javascript' id='clustrmaps'
+    src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=n&d=I1w2p4sCXQk6Xw3d8SeqdwxENo4-p5Lp5S4HrUaMOac'></script>
+  <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
